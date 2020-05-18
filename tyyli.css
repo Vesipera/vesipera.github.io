@@ -1,0 +1,79 @@
+body {
+	background-image: url("taustakuva.jpg");
+}
+
+p {
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.4);
+	padding: 10px;
+	box-shadow: 3px 3px 5px grey;
+}
+
+ul.lista {
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.4);
+	padding: 10px;
+	padding-left: 30px;
+	box-shadow: 3px 3px 5px grey;
+	text-align: justify;
+}
+
+div.lista {
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.4);
+	padding: 10px;
+	box-shadow: 3px 3px 5px grey;
+	text-align: justify;
+}
+
+li {
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+li.nav-item:hover {
+	background-color: #DCDCDC;
+}
+	
+nav {
+	border-radius: 5px;
+	box-shadow: 1px 1px 5px grey;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+  
+h1 {
+	margin-top: 20px;
+}
+
+img.linkki {
+	opacity: 0.6;
+}
+
+img.linkki:hover {
+	opacity: 1.0;
+}
+
+p.footer {
+	background-color: rgba(100, 100, 100, 0.4);
+}
+
+img.kirja {
+	width: 40%;
+}
+
+h3.linkki {
+	border-radius: 10px;
+	box-shadow: 1px 1px 5px black;
+}
+
+a.lista:hover {
+	color: red;
+}
+
+a.lista {
+	transition: .5s;
+}
