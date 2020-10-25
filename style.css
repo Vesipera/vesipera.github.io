@@ -1,0 +1,41 @@
+/* R0331 Javascript Syksy 2020 Ensimmäisen projektin tyylimäärittelytiedosto */
+/* (c) Janne Lahdenperä 2020 */
+label {
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+input {
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+select {
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#results {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.taskField {
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
+    margin: 2px;
+}
+
+.btn-light {
+    color: red;
+    font-weight: bold;
+    float: right;
+}
+
+.footer {
+    margin-top: 50px;
+}
