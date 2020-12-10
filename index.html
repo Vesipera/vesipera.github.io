@@ -13,21 +13,20 @@
 </head>
 
 <body>
-    <div class="container"> <!-- Otsikko -->
-        <h1 class="text-center">Onko tänään liputuspäivä?</h1>
-    </div>
-
-    <div class="container"> <!-- Tulosalue, tänne kirjoitetaan kaikki saadut tulokset -->
+    <!-- Otsikko -->
+    <h1 class="display-4 text-center">Onko tänään liputuspäivä?</h1>
+    
+    <div class="container mx-auto"> <!-- Tulosalue, tänne kirjoitetaan kaikki saadut tulokset -->
         <div class="text-center" id="result"></div>
     </div>
     
-    <div id="valinnainen" class="container text-center"> <!-- Valinnaisen päpivämäärän asettamista vaativat toiminnot -->
-        <label for="customDate">Kokeile haluamallasi päivämäärällä:</label>
+    <div class="container mx-auto text-center"> <!-- Valinnaisen päpivämäärän asettamista vaativat toiminnot -->
+        <!-- <label for="customDate">Kokeile haluamallasi päivämäärällä:</label> -->
         <input type="date" id="customDate" name="testDate"> <!-- Päivämäärän asettamisessa käytetty hyväksi html:n date selectoria -->
         <button type="button" id="testButton" class="btn btn-primary">Testaa</button> <!-- Nappi tiedon eteenpäin lähettämistä varten -->
     </div>
     
-    <div class="container"> <!-- Footer-tiedot -->
+    <div class="container mx-auto"> <!-- Footer-tiedot -->
 		<footer>
 			<div class="text-center">
 				<div class="footer">&copy; Janne Lahdenper&auml; 2020<br>Tiedot liputuspäivistä on haettu <a href="http://www.webcal.fi" target="_blank">www.webcal.fi<a></a>-palvelusta</div>
