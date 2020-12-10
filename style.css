@@ -1,12 +1,21 @@
 /* R0331 JavaScript syksy 2020, kolmannen projektin tyylimäärittelyt */
 /* (c) Janne Lahdenperä 2020 */
 .container {
-    margin: 50px;
+    margin: 20px;
+}
+
+h1 {
+    margin-bottom: 30px;
 }
 
 #result {
     padding: 10px;
     box-shadow: 3px 3px;
+    border-radius: 25px;
+}
+
+#dateSelector {
+    display: none;
 }
 
 #customDate {
@@ -18,3 +27,9 @@
     margin-right: 5px;
     margin-left: 5px;
 }
+
+footer {
+    margin-top: 50px;
+}
+
+

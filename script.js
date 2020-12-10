@@ -3,8 +3,6 @@
 
 var jsonObj; // Luodaan objekti, johon haettava tieto tallennetaan globaalina muuttujana. Näin siihen pääsee käsiksi kaikista funktioista
 
-document.getElementById('testButton').addEventListener('click', testDate); // Luodaan sivun napille kuuntelija
-
 // Funktio lähettää pyynnön webcal.fi-sivulle ja hakee sieltä tiedot kuluvan vuoden liputuspäivistä
 function loadData() {
     var tempDate = new Date();  // Otetaan tämänhetkinen päiväys väliaikaiseen muuttujaan
@@ -12,16 +10,11 @@ function loadData() {
     
     // Haettavan json-tiedon osoite, kierrätetään se cors-anywhere palvelun kautta
     var url = "https://cors-anywhere.herokuapp.com/https://www.webcal.fi/cal.php?id=2&format=json&start_year=current_year&end_year=current_year&tz=Europe%2FHelsinki";
-    var xmlhttp = new XMLHttpRequest(); // Muuttuja AJAX-pyyntöä varten
-    xmlhttp.open("GET", url, true);   // Luodaan pyyntö aiemmin määriteltyyn osoitteeseen
-    xmlhttp.send(); // Lähetetään pyyntö
-  
-    xmlhttp.onreadystatechange = function() { // Odotetaan vastausta
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { // Saadaan kelvollinen vastaus
-            jsonObj = JSON.parse(xmlhttp.responseText); // Luodaan vastauksesta JSON-olio
-            checkDate(currentDate); // Katsotaan onko tänään liputuspäivä
-        }
-    }
+    // Haetaan tarvittava tieto, asetetaan se muuttujaan ja viedään tarkastettavaksi
+    $.getJSON(url, function(json) {
+        jsonObj = json;
+        checkDate(currentDate);
+    });
 }
 
 // Funktio saa arvonaan päiväyksen ja tarkistaa onko se liputuspäivä
@@ -30,9 +23,9 @@ function checkDate(givenDate) {
     var foundResult = false; // Tarkastusmuuttuja vastauksen löytämistä varten
 
     for (var i = 0; i < jsonObj.length; i++) {  // Käydään olion kentät läpi
-        if (jsonObj[i].date == givenDate) {     // Tarkestetaan täsmääkö joku olion päivämääristä funktiolle annettuun arvoon
+        if (jsonObj[i].date == givenDate) {     // Tarkastetaan täsmääkö joku olion päivämääristä funktiolle annettuun arvoon
             result += "Kyllä! Tänään on " + jsonObj[i].name.slice(4) + "!"; // Liputuspäivä löytyi! Kirjoitetaan se vastaukseen
-            document.getElementById('result').style.backgroundColor = '#98FB98';
+            $('#result').css('background-color', '#98FB98');
             foundResult = true; // Muutetaan tarkastusmuuttujan arvo
         }
     }
@@ -40,10 +33,10 @@ function checkDate(givenDate) {
     if (foundResult == false) { // Annettu päivä ei ole liputuspäivä, ilmoitetaan siitä käyttäjälle
         result += "Ei, tänään ei ole virallista liputuspäivää.<br>Muista kuitenkin että liputukseen voi olla myös muita syitä.<br>";
         result += checkNextFlagDay(givenDate);  // Kerrotaan myös milloin on seuraava virallinen liputuspäivä
-        document.getElementById('result').style.backgroundColor = '#FFC0CB';
+        $('#result').css('background-color', '#FFC0CB');
     }
 
-    document.getElementById('result').innerHTML = result;   // Laitetaan vastaus näkymään sivulle
+    $('#result').html(result); // Laitetaan vastaus näkymään sivulle
 }
 
 // Funktio saa arvokseen päivämäärän ja kertoo sitä seuraavan liputuspäivän
@@ -66,18 +59,28 @@ function checkNextFlagDay(givenDate) {
 
 // Funktio sivulta löytyvän päiväyksen tarkastamiseen ja edelleen lähettämiseen
 function testDate() {
-    var dateValue = document.getElementById('customDate').value; // Haetaan päivämääräkentän arvo omaan muuttujaan
+    var dateValue = $('#customDate').val(); // Haetaan päivämääräkentän arvo omaan muuttujaan
     var currentYear = new Date().getFullYear(); // Kuluva vuosi vertailua varten
     var checkedYear = new Date(dateValue).getFullYear();   // Päivämääräkentän vuosi vertailua varten
     if (dateValue === "") { // Kenttä on tyhjä, ilmoitetaan siitä käyttäjälle
-        document.getElementById('result').innerHTML = "Annoit tyhjän arvon!";
-        document.getElementById('result').style.backgroundColor = '#D3D3D3';
+        $('#result').html("Annoit tyhjän arvon!");
+        $('#result').css('background-color', '#D3D3D3');
     } else if (checkedYear !== currentYear) {  // Palvelu toimii ainoastaan kuluvan vuoden päivämäärillä
-        document.getElementById('result').innerHTML = "Sivu toimii tällä hetkellä vain vuoden " + currentYear + " päivämäärillä!";
-        document.getElementById('result').style.backgroundColor = '#D3D3D3';
+        $('#result').html("Sivu toimii tällä hetkellä vain vuoden " + currentYear + " päivämäärillä!");
+        $('#result').css('background-color', '#D3D3D3');
     } else {
         checkDate(dateValue); // Päiväys on kelvollinen, lähetetään se eteenpäin liputuspäiviä tarkastavalle funktiolle
     }
 }
 
-window.onload = loadData; // Sivun latautuessa ladataan tiedot verkosta muuttujaan
+// Toiminnallisuus testaa-napille
+$('#testButton').click(function() {
+    testDate();
+});
+
+// Nappi näyttää ja piilottaa päivämäärän valinnan
+$('#showButton').click(function() {
+    $('#dateSelector').slideToggle();
+});
+
+$(document).ready(loadData()); // Sivun latautuessa ladataan tiedot verkosta muuttujaan
