@@ -7,7 +7,6 @@
 #result {
     padding: 10px;
     box-shadow: 3px 3px;
-    display: none;
 }
 
 #customDate {
@@ -35,15 +34,3 @@ h1 {
         font-size: 14px;
     }
 }
-/*
-#valinnainen {
-    display: none;
-}
-
-footer {
-    display: none;
-}
-
-body {
-    display: none;
-}*/
