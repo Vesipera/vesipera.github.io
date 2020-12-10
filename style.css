@@ -1,41 +1,49 @@
-/* R0331 Javascript Syksy 2020 Ensimmäisen projektin tyylimäärittelytiedosto */
+/* R0331 JavaScript syksy 2020, kolmannen projektin tyylimäärittelyt */
 /* (c) Janne Lahdenperä 2020 */
-label {
-    margin-right: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+.container {
+    margin: 50px;
 }
 
-input {
-    margin-right: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-select {
-    margin-right: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-#results {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.taskField {
-    border-style: solid;
-    border-width: 1px;
+#result {
     padding: 10px;
-    margin: 2px;
+    box-shadow: 3px 3px;
+    display: none;
 }
 
-.btn-light {
-    color: red;
-    font-weight: bold;
-    float: right;
+#customDate {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
-.footer {
-    margin-top: 50px;
+#testButton {
+    margin-right: 5px;
+    margin-left: 5px;
 }
+
+h1 {
+    font-size: 40px;
+}
+
+@media only screen and (max-width: 780px) {
+    h1 {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    h1 {
+        font-size: 14px;
+    }
+}
+/*
+#valinnainen {
+    display: none;
+}
+
+footer {
+    display: none;
+}
+
+body {
+    display: none;
+}*/
