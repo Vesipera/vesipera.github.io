@@ -1,5 +1,10 @@
 /* R0331 JavaScript syksy 2020, kolmannen projektin tyylimäärittelyt */
 /* (c) Janne Lahdenperä 2020 */
+body {
+    background-color: rgb(100, 187, 237);
+    
+}
+
 .container {
     margin: 20px;
 }

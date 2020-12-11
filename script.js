@@ -8,8 +8,8 @@ function loadData() {
     var tempDate = new Date();  // Otetaan tämänhetkinen päiväys väliaikaiseen muuttujaan
     var currentDate = tempDate.toISOString().slice(0,10); // Muutetaan päiväys ISO-muotoon ja poimitaan siitä vuosi, kuukausi ja päivä
     
-    // Haettavan json-tiedon osoite, kierrätetään se cors-anywhere palvelun kautta
-    var url = "https://cors-anywhere.herokuapp.com/https://www.webcal.fi/cal.php?id=2&format=json&start_year=current_year&end_year=current_year&tz=Europe%2FHelsinki";
+    // Haettavan json-tiedon osoite
+    var url = "Liputuspäivät (2020).json";
     // Haetaan tarvittava tieto, asetetaan se muuttujaan ja viedään tarkastettavaksi
     $.getJSON(url, function(json) {
         jsonObj = json;
@@ -24,7 +24,7 @@ function checkDate(givenDate) {
 
     for (var i = 0; i < jsonObj.length; i++) {  // Käydään olion kentät läpi
         if (jsonObj[i].date == givenDate) {     // Tarkastetaan täsmääkö joku olion päivämääristä funktiolle annettuun arvoon
-            result += "Kyllä! Tänään on " + jsonObj[i].name.slice(4) + "!"; // Liputuspäivä löytyi! Kirjoitetaan se vastaukseen
+            result += "<b>Kyllä! Tänään on " + jsonObj[i].name.slice(4) + "!</b>"; // Liputuspäivä löytyi! Kirjoitetaan se vastaukseen
             $('#result').css('background-color', '#98FB98');
             foundResult = true; // Muutetaan tarkastusmuuttujan arvo
         }
@@ -47,14 +47,14 @@ function checkNextFlagDay(givenDate) {
     for (var i = 0; i < jsonObj.length; i++) {  // Käydään olion kentät läpi
         var jsonDate = new Date(jsonObj[i].date);   // Tehdään päivämäärän sisältävästä merkkijonosta olio vertailua varten
         if (jsonDate > testDate) {  // Katsotaan läytyykö seuraavaa liputuspäivää
-            result += "Seuraava virallinen liputuspäivä on " + jsonObj[i].name.slice(4) // Liputuspäivä löytyi, ilmoitetaan siitä
-            + " " + jsonDate.getDate() + "." + (jsonDate.getMonth() + 1) + ".";
+            result += "<b>Seuraava virallinen liputuspäivä on " + jsonObj[i].name.slice(4) // Liputuspäivä löytyi, ilmoitetaan siitä
+            + " " + jsonDate.getDate() + "." + (jsonDate.getMonth() + 1) + ".</b>";
             return result;  // Palautetaan tulos kutsuneelle funktiolle
         }        
     }
 
     // Kuluvalta vuodelta ei löytynyt enää liputuspäiviä, kerrotaan siitä käyttäjälle
-    return "Tänä vuonna ei ole enää virallisia liputuspäiviä.";
+    return "<b>Tänä vuonna ei ole enää virallisia liputuspäiviä!</b>";
 }
 
 // Funktio sivulta löytyvän päiväyksen tarkastamiseen ja edelleen lähettämiseen
