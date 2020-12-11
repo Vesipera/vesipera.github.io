@@ -6,10 +6,27 @@ var jsonObj; // Luodaan objekti, johon haettava tieto tallennetaan globaalina mu
 // Funktio lähettää pyynnön webcal.fi-sivulle ja hakee sieltä tiedot kuluvan vuoden liputuspäivistä
 function loadData() {
     var tempDate = new Date();  // Otetaan tämänhetkinen päiväys väliaikaiseen muuttujaan
+    var currentYear = tempDate.getFullYear();
     var currentDate = tempDate.toISOString().slice(0,10); // Muutetaan päiväys ISO-muotoon ja poimitaan siitä vuosi, kuukausi ja päivä
     
-    // Haettavan json-tiedon osoite
-    var url = "Liputuspäivät (2020).json";
+    // Määritetään haettavan JSON-tiedon osoite kuluvan vuoden perusteella
+    if (currentYear == 2020) {
+        var url = "Liputuspäivät (2020).json";
+    } else if (currentYear == 2021) {
+        var url = "Liputuspäivät (2021).json";
+    } else if (currentYear == 2022) {
+        var url = "Liputuspäivät (2022).json";
+    } else if (currentYear == 2023) {
+        var url = "Liputuspäivät (2023).json";
+    } else if (currentYear == 2024) {
+        var url = "Liputuspäivät (2024).json";
+    } else if (currentYear == 2025) {
+        var url = "Liputuspäivät (2025).json";
+    } else {
+        // Virhetilanteessa ilmoitetaan käyttäjälle
+        window.alert("Virhe liputuspäivätietojen hakemisessa!");
+        return;
+    }
     // Haetaan tarvittava tieto, asetetaan se muuttujaan ja viedään tarkastettavaksi
     $.getJSON(url, function(json) {
         jsonObj = json;

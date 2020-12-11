@@ -1,12 +1,12 @@
 /* R0331 JavaScript syksy 2020, kolmannen projektin tyylimäärittelyt */
 /* (c) Janne Lahdenperä 2020 */
 body {
-    background-color: rgb(100, 187, 237);
-    
+    color: #ffffff;
+    background-color: #000000;
 }
 
 .container {
-    margin: 20px;
+    margin: 40px;
 }
 
 h1 {
@@ -14,9 +14,12 @@ h1 {
 }
 
 #result {
+    color: #000000;
     padding: 10px;
-    box-shadow: 3px 3px;
-    border-radius: 25px;
+    border-style: solid;
+    border-color: #ffffff;
+    border-width: 1px;
+    border-radius: 5px;
 }
 
 #dateSelector {
